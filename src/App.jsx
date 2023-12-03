@@ -10,12 +10,14 @@ import NotFound from "./pages/error/NotFound";
 
 // components
 import Navbar from "./components/Navbar";
+import NewFun from "./pages/user/NewFun";
+import MyProfile from "./pages/user/MyProfile";
+import FindFriends from "./pages/user/FindFriends";
 
 export default function App() {
   return (
     <div>
       <Navbar />
-
       <br />
       <hr />
 
@@ -23,6 +25,9 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/user/newFun" element={<NewFun />} />
+        <Route path="/user/myProfile" element={<MyProfile />} />
+        <Route path="/user/findFriends" element={<FindFriends />} />
 
         {/* error FE routes */}
         <Route path="/error" element={<Error />} />

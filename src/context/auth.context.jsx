@@ -4,6 +4,7 @@ import service from "../services/config";
 const AuthContext = createContext();
 
 const AuthWrapper = (props) => {
+  const [payload, setPayload] = useState({ username: "friend" });
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -11,8 +12,7 @@ const AuthWrapper = (props) => {
     try {
       const response = await service.get("/auth/verify");
       setIsLoggedIn(true);
-
-      console.log("logeed in true");
+      setPayload(response.data.payload);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -27,6 +27,7 @@ const AuthWrapper = (props) => {
   }, []);
 
   const passedContext = {
+    payload,
     authenticateUser,
     isLoggedIn,
   };

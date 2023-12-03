@@ -14,16 +14,19 @@ export default function Navbar() {
   if (isLoggedIn) {
     return (
       <nav>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/"> Home </NavLink>
+        <NavLink to="/user/newFun"> NewFun </NavLink>
+        <NavLink to="/user/myProfile"> My Profile </NavLink>
+        <NavLink to="/user/findFriends"> Find friends </NavLink>
 
-        <button onClick={handleLogOut}>cerrar sesion</button>
+        <button onClick={handleLogOut}> cerrar sesion </button>
       </nav>
     );
   } else {
     return (
       <nav>
-        <NavLink to="/signup">Sign up |</NavLink>
-        <NavLink to="/login">| Log in</NavLink>
+        <NavLink to="/signup"> Sign up </NavLink>
+        <NavLink to="/login"> Log in </NavLink>
       </nav>
     );
   }
