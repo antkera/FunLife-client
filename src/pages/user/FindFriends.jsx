@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import service from "../../services/config";
 import { AuthContext } from "../../context/auth.context";
 import HashLoader from "react-spinners/HashLoader";
+import OneTimebutton from "../../components/OneTimebutton";
 
 export default function FindFriends() {
   const { payload } = useContext(AuthContext);
@@ -33,7 +34,7 @@ export default function FindFriends() {
 
   if (isLoading === true) {
     return (
-      <div>
+      <div className="spinnerContainer flex center">
         <HashLoader color={"orange"} size={50} />
       </div>
     );
@@ -49,7 +50,18 @@ export default function FindFriends() {
         return (
           <div key={eachUser._id} className="flex center margin">
             <p className="margin">{eachUser.username}</p>
-            <button
+
+            <OneTimebutton
+              className="margin"
+              funct={addFriend}
+              functValue={eachUser._id}
+              textAfter={"already friends"}
+              isDisabled={eachUser.friends.includes(payload._id)}
+            >
+              Add {eachUser.username}
+            </OneTimebutton>
+
+            {/* <button
               disabled={eachUser.friends.includes(payload._id)}
               className="margin"
               onClick={() => {
@@ -59,7 +71,7 @@ export default function FindFriends() {
               {eachUser.friends.includes(payload._id)
                 ? "already friends"
                 : "Add as a friend"}
-            </button>
+            </button> */}
           </div>
         );
       })}

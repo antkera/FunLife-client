@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/auth.context";
 import service from "../../services/config";
+import HashLoader from "react-spinners/HashLoader";
 
 export default function MyProfile() {
   const [profile, setProfile] = useState([]);
@@ -11,14 +12,20 @@ export default function MyProfile() {
   const getData = async () => {
     const response = await service.get("/user/myProfile");
     setProfile(response.data);
-    setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   };
   useEffect(() => {
     getData();
   }, []);
 
-  if (isLoading) {
-    return <h3>...buscando</h3>;
+  if (isLoading === true) {
+    return (
+      <div className="spinnerContainer flex center">
+        <HashLoader color={"orange"} size={50} />
+      </div>
+    );
   }
   return (
     <div>
@@ -30,7 +37,7 @@ export default function MyProfile() {
         <p>
           Friends:
           {profile.friends.map((eachFriend) => {
-            return <p> ➡ | {eachFriend.username}</p>;
+            return <p key={eachFriend._id}> ➡ | {eachFriend.username}</p>;
           })}
         </p>
         <h4>My Commentaries:</h4>

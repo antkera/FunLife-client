@@ -14,10 +14,11 @@ export default function Navbar() {
   if (isLoggedIn) {
     return (
       <nav>
-        <NavLink to="/"> Home </NavLink>
-        <NavLink to="/user/newFun"> NewFun </NavLink>
-        <NavLink to="/user/myProfile"> My Profile </NavLink>
-        <NavLink to="/user/findFriends"> Find friends </NavLink>
+        <NavLink to="/">|| Home |</NavLink>
+        <NavLink to="/user/newFun">| NewFun |</NavLink>
+        <NavLink to="/user/myProfile">| My Profile |</NavLink>
+        <NavLink to="/user/findFriends">| Find friends |</NavLink>
+        <NavLink to="/user/myFuns">| My Funs ||</NavLink>
 
         <button onClick={handleLogOut}> cerrar sesion </button>
       </nav>

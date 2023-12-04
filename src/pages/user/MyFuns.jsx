@@ -1,8 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import HashLoader from "react-spinners/HashLoader";
+import service from "../../services/config";
+import FunCard from "../../components/FunCard";
 
 export default function MyFuns() {
-  const [funArr, setFunArr] = useState([]);
+  const [funArr, setFunArr] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  return <div></div>;
+  const getData = async () => {
+    try {
+      const response = await service.get("/user/myFuns");
+      setFunArr(response.data.funs);
+      console.log(funArr);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  if (isLoading === true) {
+    return (
+      <div className="spinnerContainer flex center">
+        <HashLoader color={"orange"} size={50} />
+      </div>
+    );
+  }
+
+  return funArr.map((each, index) => {
+    return <FunCard key={index} fun={each} />;
+  });
 }

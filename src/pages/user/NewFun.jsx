@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import service from "../../services/config";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AuthContext } from "../../context/auth.context";
-import OneTimebutton from "../../components/oneTimebutton";
+import OneTimebutton from "../../components/OneTimebutton";
 
 export default function NewFun() {
   const navigate = useNavigate();
@@ -94,7 +94,7 @@ export default function NewFun() {
 
         {friendsArr.map((each) => {
           return (
-            <div>
+            <div key={each._id}>
               <OneTimebutton
                 funct={setGuestsArr}
                 functValue={[...guestsArr, each._id]}
