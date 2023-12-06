@@ -14,6 +14,7 @@ export default function OneTimebutton(props) {
       className={props.className}
       disabled={notDisable ? false : isDisabled}
       onClick={(e) => {
+        e.preventDefault()
         
         
         

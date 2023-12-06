@@ -36,21 +36,22 @@ export default function PublicFuns() {
   }
 
   return (
-    <div>
-      <h2>Public Funs</h2>
+    <div className="funArrContainer">
       {funsArr.map((eachfunColl) => {
         
         return (
-          <div key={eachfunColl._id} className="flex center column margin">
-            <h3 className="margin underline">{eachfunColl.title}</h3>
-
-            {eachfunColl.funs.map((eachFun) => {return(
-                <FunCard key={eachFun._id} fun={eachFun}/>
+          <div key={eachfunColl._id} className="funArrContainer">
+          
+          {eachfunColl.funs.map((eachFun) => {return(
+            <FunCard key={eachFun._id} fun={eachFun}/>
             )})}
-
+            
+            <h3 className="margin underline">{eachfunColl.title}</h3>
           </div>
         );
       })}
+      <h2>Public Funs</h2>
+
     </div>
   );
 }

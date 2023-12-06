@@ -57,7 +57,8 @@ export default function NewFun() {
     showFriends();
   }, []);
 
-  const handleNewFun = async () => {
+  const handleNewFun = async (e) => {
+    e.preventDefault()
     const { title, description, date, time, mainImg, isPublic } = e.target;
 
     const newFun = {
@@ -155,15 +156,7 @@ export default function NewFun() {
         })}
 
         <hr />
-        <button
-          onClick={() => {
-            console.log(guestsArr, imageUrl);
-          }}
-          type="button"
-        >
-          log
-        </button>
-
+        
         <button type="submit">Create</button>
         <p style={{ color: "red" }}>{errorMessage}</p>
       </form>

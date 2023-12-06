@@ -55,6 +55,17 @@ margin-top: 300px;
   transition-duration: 1s;
   
 }
+.funArrContainer{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  background-color: rgba(0, 255, 255, 0.192);
+  padding: 20px;
+  margin: 20px -15px;
+  border-radius: 50px;
+  transition-duration: 1s;
+  
+}
 .chooseFrineds{
   display: flex;
   flex-direction: column;
@@ -67,6 +78,7 @@ margin-top: 300px;
   border-radius: 50px;
   transition-duration: 1s;
 }
+
 .chooseFrinedsContainer{
   display: flex;
   flex-direction: column;

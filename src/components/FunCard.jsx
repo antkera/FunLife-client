@@ -61,7 +61,7 @@ export default function FunCard(props) {
 
   const handleFork = async (e) => {
   e.preventDefault()
-  const {isPublic} = e.target
+  
  
 
     const forkFun = {
