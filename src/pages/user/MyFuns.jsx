@@ -26,13 +26,14 @@ export default function MyFuns() {
 
   if (isLoading === true) {
     return (
-      <div className="spinnerContainer flex center">
-        <HashLoader color={"orange"} size={50} />
+      <div className="spinnerContainer">
+        <HashLoader color={"orange"} size={100} />
       </div>
     );
   }
 
-  return funArr.map((each, index) => {
-    return <FunCard key={index} fun={each} />;
+  return funArr.map((each) => {
+    // ! he cambiado esto, he quitado el index
+    return <FunCard key={each._id} fun={each} />;
   });
 }

@@ -4,9 +4,28 @@
   padding: 2rem;
   text-align: center;
 }
+div{
+  transition-duration: 2s;
+
+}
+img{
+ border-radius: 20px;
+ /* margin-top: -30px; */
+}
+textarea{
+  height: 10em;
+  /* width: 500px; */
+}
+a{
+  text-decoration: none;
+  color: rgb(61, 129, 72)
+}
 
 .flex {
   display: flex;
+}
+.column {
+  flex-direction: column;
 }
 .center {
   justify-content: center;
@@ -14,6 +33,53 @@
 .margin {
   margin: 20px;
 }
+.underline{
+  text-decoration: underline;
+}
+
 .spinnerContainer{
+  display: flex;
+  justify-content: center;
+align-content: center;
+margin-top: 300px;
   
+}
+.funCard{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(0, 255, 255, 0.192);
+  padding: 20px;
+  margin: 20px -15px;
+  border-radius: 50px;
+  transition-duration: 1s;
+  
+}
+.chooseFrineds{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-between;
+
+  background-color: rgba(0, 255, 255, 0.192);
+  padding: 20px;
+  margin: 50px ;
+  border-radius: 50px;
+  transition-duration: 1s;
+}
+.chooseFrinedsContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-between;
+  padding: 20px;
+  margin: 20px -15px;
+  border-radius: 30px;
+  transition-duration: 1s;
+}
+.hidden{
+  display: none;
+}
+.transition{
+  transition-duration: 2s;
 }

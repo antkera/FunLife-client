@@ -19,6 +19,7 @@ export default function Navbar() {
         <NavLink to="/user/myProfile">| My Profile |</NavLink>
         <NavLink to="/user/findFriends">| Find friends |</NavLink>
         <NavLink to="/user/myFuns">| My Funs ||</NavLink>
+        <NavLink to="/user/publicFuns">| Public Funs ||</NavLink>
 
         <button onClick={handleLogOut}> cerrar sesion </button>
       </nav>

@@ -14,6 +14,7 @@ import NewFun from "./pages/user/NewFun";
 import MyProfile from "./pages/user/MyProfile";
 import FindFriends from "./pages/user/FindFriends";
 import MyFuns from "./pages/user/MyFuns";
+import PublicFuns from "./pages/user/PublicFuns";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/user/myFuns" element={<MyFuns />} />
         <Route path="/user/myProfile" element={<MyProfile />} />
         <Route path="/user/findFriends" element={<FindFriends />} />
+        <Route path="/user/publicFuns" element={<PublicFuns />} />
 
         {/* error FE routes */}
         <Route path="/error" element={<Error />} />

@@ -1,8 +1,10 @@
+import { CloudConfig } from "@cloudinary/url-gen";
 import { useEffect, useState } from "react";
 
 export default function OneTimebutton(props) {
   const { funct, functValue, textAfter, children } = props;
   const [isDisabled, setIsDisabled] = useState(false);
+  const notDisable = props.notDisable;
   useEffect(() => {
     setIsDisabled(props.isDisabled);
   }, []);
@@ -10,13 +12,16 @@ export default function OneTimebutton(props) {
   return (
     <button
       className={props.className}
-      disabled={isDisabled}
-      onClick={() => {
+      disabled={notDisable ? false : isDisabled}
+      onClick={(e) => {
+        
+        
+        
         setIsDisabled(true);
-        funct(functValue);
+        funct(functValue? functValue : e);
       }}
     >
-      {isDisabled ? textAfter : children}
+      {isDisabled ? (textAfter ? textAfter : children) : children}
     </button>
   );
 }

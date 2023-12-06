@@ -1,16 +1,50 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import service from "../../services/config";
-import { Cloudinary } from "@cloudinary/url-gen";
 import { AuthContext } from "../../context/auth.context";
 import OneTimebutton from "../../components/OneTimebutton";
+import axios from "axios";
 
 export default function NewFun() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
-  const cld = new Cloudinary({ cloud: { cloudName: "da9sa33le" } });
   const [friendsArr, setFriendsArr] = useState([]);
   const [guestsArr, setGuestsArr] = useState([]);
+  const [imageUrl, setImageUrl] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleFileUpload = async (event) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    if (!event.target.files[0]) {
+      // to prevent accidentally clicking the choose file button and not selecting a file
+      return;
+    }
+
+    setIsUploading(true); // to start the loading animation
+    console.log(event.target.files[0]);
+    const uploadData = new FormData(); // images and other files need to be sent to the backend in a FormData
+    uploadData.append("image", event.target.files[0]);
+    //                   |
+    //     this name needs to match the name used in the middleware in the backend => uploader.single("image")
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5005/api/upload",
+        uploadData
+      );
+
+      setImageUrl(response.data.imageUrl);
+      //                          |
+      //     this is how the backend sends the image to the frontend => res.json({ imageUrl: req.file.path });
+
+      setIsUploading(false); // to stop the loading animation
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+
+  //-------------------------------------
 
   const showFriends = async () => {
     const response = await service.get("/user/myFriends");
@@ -22,8 +56,8 @@ export default function NewFun() {
     showFriends();
   }, []);
 
-  const handleNewFun = async (e) => {
-    e.preventDefault();
+  const handleNewFun = async () => {
+    
 
     const { title, description, date, time, mainImg, isPublic } = e.target;
 
@@ -32,23 +66,20 @@ export default function NewFun() {
       description: description.value,
       date: date.value,
       time: time.value,
-      mainImg: mainImg.value,
+      mainImg: imageUrl,
       isPublic: isPublic.checked,
     };
 
-    console.log(newFun);
-    console.log(e.target.files);
-
     try {
       await service.post("/user/newFun", { newFun, guestsArr });
-      // navigate("/user/myProfile");
+      navigate("/user/myFuns");
       console.log(`enviando ${{ newFun, guestsArr }}`);
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
       } else {
-        // navigate("/error");
+        navigate("/error");
       }
     }
   };
@@ -58,35 +89,52 @@ export default function NewFun() {
       <h1>Creating a new Fun</h1>
 
       <form onSubmit={handleNewFun}>
-        <label>Title:</label>
+        <label htmlFor="title">Title:</label>
         <br />
         <input type="text" name="title" />
 
         <br />
 
-        <label>Description</label>
+        <label htmlFor="description">Description</label>
         <br />
         <textarea type="text" name="description" />
 
         <br />
 
-        <label>date:</label>
+        <label htmlFor="date">date:</label>
         <br />
         <input type="date" name="date" />
 
-        {/*añadir los participantes*/}
         <br />
 
-        <label>time:</label>
+        <label htmlFor="time">time:</label>
         <br />
         <input type="time" name="time" />
         <br />
+        <div>
+          <hr />
+          <div>
+            <label htmlFor="image">Image: </label>
+            <input
+              type="file"
+              name="image"
+              onChange={handleFileUpload}
+              disabled={isUploading}
+            />
+            {/* below disabled prevents the user from attempting another upload while one is already happening */}
+          </div>
 
-        <label>Main Image:</label>
-        <br />
+          {/* to render a loading message or spinner while uploading the picture */}
+          {isUploading ? <h3>... uploading image</h3> : null}
+          {console.log(isUploading)}
+          {/* below line will render a preview of the image from cloudinary */}
+          {imageUrl ? (
+            <div>
+              <img src={imageUrl} alt="img" width={200} />
+            </div>
+          ) : null}
+        </div>
 
-        <input type="file" name="mainImg" />
-        <br />
         <label>
           <input type="checkbox" name="isPublic" /> Make it public!
         </label>
@@ -110,7 +158,7 @@ export default function NewFun() {
         <hr />
         <button
           onClick={() => {
-            console.log(guestsArr);
+            console.log(guestsArr, imageUrl);
           }}
           type="button"
         >
