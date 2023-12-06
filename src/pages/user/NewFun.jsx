@@ -6,6 +6,7 @@ import OneTimebutton from "../../components/OneTimebutton";
 import axios from "axios";
 
 export default function NewFun() {
+  const baseURL= import.meta.env.VITE_SERVER_URL
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [friendsArr, setFriendsArr] = useState([]);
@@ -30,7 +31,7 @@ export default function NewFun() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5005/api/upload",
+        `${baseURL}/upload`,
         uploadData
       );
 
@@ -57,8 +58,6 @@ export default function NewFun() {
   }, []);
 
   const handleNewFun = async () => {
-    
-
     const { title, description, date, time, mainImg, isPublic } = e.target;
 
     const newFun = {

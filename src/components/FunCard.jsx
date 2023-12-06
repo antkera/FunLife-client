@@ -11,6 +11,8 @@ export default function FunCard(props) {
   //context & navigate
   const { payload } = useContext(AuthContext);
   const navigate = useNavigate();
+  const baseURL= import.meta.env.VITE_SERVER_URL
+
 
   //states
   const [isEditable, setIsEditable] = useState(false);
@@ -41,7 +43,7 @@ export default function FunCard(props) {
 
     try {
       const response = await axios.post(
-        "http://localhost:5005/api/upload",
+        `${baseURL}/upload`,
         uploadData
       );
 
