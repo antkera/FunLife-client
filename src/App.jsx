@@ -1,6 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
-
 // pages
 import Home from "./pages/Home";
 import Login from "./pages/auth/Login";
@@ -15,11 +14,17 @@ import MyProfile from "./pages/user/MyProfile";
 import FindFriends from "./pages/user/FindFriends";
 import MyFuns from "./pages/user/MyFuns";
 import PublicFuns from "./pages/user/PublicFuns";
+import Messages from "./pages/messages/messages";
+import { useState } from "react";
 
 export default function App() {
+  const [isNavBar, setIsNavBar] = useState(false)
   return (
     <div>
-      <Navbar />
+    <span id="up"></span>
+    <button className="homeButton" onClick={() => setIsNavBar(!isNavBar)}><i className="fi fi-ss-grid"></i></button>
+    {isNavBar && <Navbar />}
+      
       <br />
       <hr />
 
@@ -32,11 +37,14 @@ export default function App() {
         <Route path="/user/myProfile" element={<MyProfile />} />
         <Route path="/user/findFriends" element={<FindFriends />} />
         <Route path="/user/publicFuns" element={<PublicFuns />} />
+        <Route path="/messages/" element={<Messages />} />
 
         {/* error FE routes */}
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <div className="back_to_top_container"><a id="back_to_top"  href="#up"><i className="fi fi-ss-angle-double-small-up"></i></a></div>
+      
     </div>
   );
 }

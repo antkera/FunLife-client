@@ -35,8 +35,8 @@ export default function MyFuns() {
   return (
     <div className="funArrContainer">
       {funArr.map((each) => {
-        // ! he cambiado esto, he quitado el index
-        return <FunCard key={each._id} fun={each} />;
+        
+        return <FunCard key={each._id} fun={each} />
       })}
     </div>
   );

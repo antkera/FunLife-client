@@ -13,15 +13,18 @@ export default function Navbar() {
 
   if (isLoggedIn) {
     return (
-      <nav>
-        <NavLink to="/">|| Home |</NavLink>
-        <NavLink to="/user/newFun">| NewFun |</NavLink>
-        <NavLink to="/user/myProfile">| My Profile |</NavLink>
-        <NavLink to="/user/findFriends">| Find friends |</NavLink>
-        <NavLink to="/user/myFuns">| My Funs ||</NavLink>
-        <NavLink to="/user/publicFuns">| Public Funs ||</NavLink>
-
-        <button onClick={handleLogOut}> cerrar sesion </button>
+      <nav >
+      <div className="navbar">
+      <span className="navspan"><NavLink to="/">Home</NavLink></span>
+        <span className="navspan"><NavLink to="/user/newFun">NewFun</NavLink></span>
+        <span className="navspan"><NavLink to="/user/myProfile">My Profile</NavLink></span>
+        <span className="navspan"><NavLink to="/user/findFriends">Find friends</NavLink></span>
+        <span className="navspan"><NavLink to="/user/myFuns">My Funs</NavLink></span>
+        <span className="navspan"><NavLink to="/user/publicFuns">Public Funs</NavLink></span>
+        <span className="navspan"><NavLink to="/messages">Messages</NavLink></span>
+</div>
+        
+        <button className="exitButton" onClick={handleLogOut}>  <span><i class="fi fi-ss-address-card"></i></span></button>
       </nav>
     );
   } else {

@@ -1,24 +1,26 @@
+
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
-div{
-  transition-duration: 2s;
-
+div {
+  transition-duration: 1s;
+  border-radius: 10px;
 }
-img{
- border-radius: 20px;
- /* margin-top: -30px; */
+img {
+  border-radius: 20px;
+  /* margin-top: -30px; */
 }
-textarea{
+textarea {
   height: 10em;
   /* width: 500px; */
 }
-a{
+a {
   text-decoration: none;
-  color: rgb(61, 129, 72)
+  color: rgb(61, 129, 72);
 }
 
 .flex {
@@ -33,18 +35,17 @@ a{
 .margin {
   margin: 20px;
 }
-.underline{
+.underline {
   text-decoration: underline;
 }
 
-.spinnerContainer{
+.spinnerContainer {
   display: flex;
   justify-content: center;
-align-content: center;
-margin-top: 300px;
-  
+  align-content: center;
+  /* margin-top: 300px; */
 }
-.funCard{
+.funCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,9 +54,8 @@ margin-top: 300px;
   margin: 20px -15px;
   border-radius: 50px;
   transition-duration: 1s;
-  
 }
-.funArrContainer{
+.funArrContainer {
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
@@ -64,9 +64,8 @@ margin-top: 300px;
   margin: 20px -15px;
   border-radius: 50px;
   transition-duration: 1s;
-  
 }
-.chooseFrineds{
+.chooseFrineds {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,12 +73,12 @@ margin-top: 300px;
 
   background-color: rgba(0, 255, 255, 0.192);
   padding: 20px;
-  margin: 50px ;
+  margin: 50px;
   border-radius: 50px;
   transition-duration: 1s;
 }
 
-.chooseFrinedsContainer{
+.chooseFrinedsContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,9 +88,207 @@ margin-top: 300px;
   border-radius: 30px;
   transition-duration: 1s;
 }
-.hidden{
+.hidden {
   display: none;
 }
-.transition{
+.transition {
   transition-duration: 2s;
 }
+.messageForm {
+  display: flex;
+}
+.border {
+  background-color: green;
+  border: solid red;
+}
+.borderRadius {
+  border-radius: 10px;
+}
+.messagesContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+.received {
+  background-color: rgba(0, 253, 253, 0.809);
+  color: black;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.send {
+  background-color: rgb(6, 155, 255);
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column-reverse;
+}
+.sended {
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: rgba(34, 255, 189, 0.72);
+  color: black;
+}
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.navspan {
+  max-width: 200px;
+  color: bisque;
+  padding: 0 30px;
+  border: solid;
+  border-radius: 10px;
+}
+.navspan a {
+  color: aqua;
+}
+.homeButton {
+  
+  padding: 10px 10px 4px 10px;
+  background-color: rgba(0, 255, 255, 0);
+  font-size: 30px;
+  color:rgb(255, 255, 255);
+}
+.exitButton {
+  
+  padding: 10px 15px;
+  border-radius: 50px;
+  transition: 1s;
+  color: rgb(255, 255, 255);
+  margin: 15px;
+  background-color: unset;
+  font-size: 25px;
+}
+.exitButton:hover{
+  color: rgba(255, 0, 0, 0.557);
+  margin: 15px;
+  background-color: rgb(0, 6, 191);
+  font-size: 25px;
+}
+.stdButt {
+  background-color: rgba(0, 255, 255, 0.143);
+  border-radius: 30px;
+  padding: 0.2rem;
+  margin: 10px;
+  transition: all 1s;
+  color: aqua
+}
+.stdButt:hover{
+  background-color: rgba(0, 255, 255, 0.913);
+  transition: all 1s;
+  border-radius: 30px;
+  padding: 0.2rem;
+  margin: 5px;
+  color: black;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+}
+.upButton {
+  display: grid;
+  position: sticky;
+  margin-bottom: 100px;
+  border: solid red;
+  background-color: white;
+  font-size: 50px;
+}
+
+
+#back_to_top {
+  display: block;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 3s;
+  text-align: center;
+  border-radius: 0 0 500px 500px   ;
+  font-size: 30px;
+
+  
+  color: #0008ff;
+  border: 2px solid;
+  
+}
+#back_to_top:hover {
+  display: block;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 1s;
+  text-align: center;
+  
+
+  
+  color: #fff;
+  border: 2px solid;
+  border-radius: 50px 50px 15px 15px;
+}
+
+
+.back_to_top_container {
+  
+  background-color: rgba(0, 255, 255, 0);
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+}
+
+.back_to_top_container :hover {
+  border: unset;
+  background-color: blue;
+  border-radius: 50px;
+
+  right: 40px;
+  bottom: 40px;
+}
+.back_to_top_container:hover {
+background-color: #fff;
+}
+.oneMessage{
+  border: solid;
+  margin: 10px;
+}
+.CreateFunDiv{
+  display: flex;
+  flex-direction: column;
+}
+.CreateFunForm{
+  display: flex;
+  flex-direction: column;
+}
+
+.CreateFunForm label, input, textarea{
+ border-radius: 15px;
+ margin: 7px;
+}
+.checkbox{
+  align-self: center;
+  border-radius: 20px;
+  max-width: 150px;
+  border: solid white;
+  size: 15px;
+  margin-top: 15px;
+  padding-top: 15px;
+}
+.maxW{
+  max-width: 100px;
+  align-self: center;
+}
+.homeContainer{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.homeContainer img{
+  max-width: 100px;
+}
+.HomeColl{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+

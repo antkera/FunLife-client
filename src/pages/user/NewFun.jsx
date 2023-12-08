@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import service from "../../services/config";
 import { AuthContext } from "../../context/auth.context";
 import OneTimebutton from "../../components/OneTimebutton";
-import axios from "axios";
+
 
 export default function NewFun() {
   const baseURL= import.meta.env.VITE_SERVER_URL
@@ -30,7 +30,7 @@ export default function NewFun() {
     //     this name needs to match the name used in the middleware in the backend => uploader.single("image")
 
     try {
-      const response = await axios.post(
+      const response = await service.post(
         `${baseURL}/upload`,
         uploadData
       );
@@ -59,7 +59,7 @@ export default function NewFun() {
 
   const handleNewFun = async (e) => {
     e.preventDefault()
-    const { title, description, date, time, mainImg, isPublic } = e.target;
+    const { title, description, date, time, isPublic } = e.target;
 
     const newFun = {
       title: title.value,
@@ -69,11 +69,11 @@ export default function NewFun() {
       mainImg: imageUrl,
       isPublic: isPublic.checked,
     };
-
+console.log("hola")
     try {
+      console.log(`enviando ${{ newFun, guestsArr }}`);
       await service.post("/user/newFun", { newFun, guestsArr });
       navigate("/user/myFuns");
-      console.log(`enviando ${{ newFun, guestsArr }}`);
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 400) {
@@ -85,10 +85,10 @@ export default function NewFun() {
   };
 
   return (
-    <div>
+    <div className="CreateFunDiv">
       <h1>Creating a new Fun</h1>
 
-      <form onSubmit={handleNewFun}>
+      <form className="CreateFunForm" onSubmit={handleNewFun}>
         <label htmlFor="title">Title:</label>
         <br />
         <input type="text" name="title" />
@@ -103,13 +103,13 @@ export default function NewFun() {
 
         <label htmlFor="date">date:</label>
         <br />
-        <input type="date" name="date" />
+        <input className="maxW" type="date" name="date" />
 
         <br />
 
-        <label htmlFor="time">time:</label>
+        <label  htmlFor="time">time:</label>
         <br />
-        <input type="time" name="time" />
+        <input className="maxW" type="time" name="time" />
         <br />
         <div>
           <hr />
@@ -134,23 +134,25 @@ export default function NewFun() {
             </div>
           ) : null}
         </div>
+        <div className="checkbox"><label >
+          <input  type="checkbox" name="isPublic" /> Make it public!
+        </label></div>
 
-        <label>
-          <input type="checkbox" name="isPublic" /> Make it public!
-        </label>
-        <br />
+        
+        
 
         {friendsArr.map((each) => {
           return (
-            <div key={each._id}>
+            <div className="buttonContainer" key={each._id}>
               <OneTimebutton
+              className="stdButt"
                 funct={setGuestsArr}
                 functValue={[...guestsArr, each._id]}
                 textAfter={`${each.username} selected`}
               >
                 invite {each.username}
               </OneTimebutton>
-              <br />
+              
             </div>
           );
         })}

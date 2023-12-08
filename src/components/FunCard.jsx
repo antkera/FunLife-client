@@ -3,7 +3,6 @@ import funImg from "../../public/fun.jpg";
 import OneTimebutton from "./OneTimebutton";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import ChooseFriends from "./ChooseFriends";
 import service from "../services/config";
 
@@ -42,7 +41,7 @@ export default function FunCard(props) {
     uploadData.append("image", event.target.files[0]);
 
     try {
-      const response = await axios.post(
+      const response = await service.post(
         `${baseURL}/upload`,
         uploadData
       );
@@ -76,8 +75,8 @@ export default function FunCard(props) {
     console.log(forkFun);
 
     try {
-      await service.post("/user/forkFun", { forkFun, guestsArr });
       navigate("/user/myFuns");
+      await service.post("/user/forkFun", { forkFun, guestsArr });
       console.log(`enviando ${{ newFun: forkFun, guestsArr }}`);
     } catch (error) {
       console.log(error);
@@ -98,6 +97,11 @@ export default function FunCard(props) {
     year: "numeric",
     month: "short",
     day: "numeric",
+  });
+  const formattedDate = new Date(formDate).toLocaleDateString('en-us', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
   });
 
   const handleEdit = async () => {
@@ -148,7 +152,7 @@ export default function FunCard(props) {
       <label htmlFor="date">When?</label>
       <input  onChange={(e) => {
         setFormDate(e.target.value);
-      }} type="date" name="date" value={formDate} />
+      }} type="date" name="date" value={formattedDate} />
 
       <label htmlFor="time">hour?</label>
       <input  onChange={(e) => {
