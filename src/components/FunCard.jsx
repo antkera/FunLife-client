@@ -149,7 +149,7 @@ export default function FunCard(props) {
         }}
         type="date"
         name="date"
-        value={formattedDate}
+        
       />
 
       <label htmlFor="time">hour?</label>
@@ -183,8 +183,8 @@ export default function FunCard(props) {
         <OneTimebutton funct={handleFork}>Fork</OneTimebutton> <hr />
         <OneTimebutton
           notDisable={true}
-          funct={setIsEditable}
-          functValue={!isEditable}
+          funct={() => {setIsEditable(!isEditable)}}
+          
         >
           back
         </OneTimebutton>
@@ -214,6 +214,7 @@ export default function FunCard(props) {
         See you on <strong>{when}</strong> at <strong>{formTime}</strong>
       </p>
       <div>
+      <div><p className="isPublic">{props.fun.isPublic? "This Fun is public" : "This Fun is not public"}</p></div>
         <hr />
       </div>
       <div className="flex center">
@@ -221,8 +222,8 @@ export default function FunCard(props) {
         <OneTimebutton funct={handleEdit}>Edit</OneTimebutton> <hr />
         <OneTimebutton
           notDisable={true}
-          funct={setIsEditable}
-          functValue={!isEditable}
+          funct={() => {setIsEditable(!isEditable)}}
+          
         >
           Fork
         </OneTimebutton>{" "}

@@ -11,7 +11,7 @@ export default function OneTimebutton(props) {
 
   return (
     <button
-      className={props.className}
+      className={props.className || "stdButt"}
       disabled={notDisable ? false : isDisabled}
       onClick={(e) => {
         e.preventDefault();

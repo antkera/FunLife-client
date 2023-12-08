@@ -107,7 +107,7 @@ a {
   justify-content: space-evenly;
 }
 .received {
-  background-color: rgba(0, 253, 253, 0.809);
+  background-color: rgba(0, 253, 253, 0.708);
   color: black;
   display: flex;
   flex-direction: column-reverse;
@@ -280,4 +280,8 @@ textarea {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: baseline;
+}
+.isPublic{
+  font-size: 10px;
+  text-decoration: underline;
 }

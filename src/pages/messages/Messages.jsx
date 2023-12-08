@@ -16,7 +16,7 @@ export default function Messages() {
             setDisplayType("received");
           }}
         >
-          mensajes recibidos
+          Received messages
         </button>
         <button
           className="stdButt"
@@ -24,7 +24,7 @@ export default function Messages() {
             setDisplayType("send");
           }}
         >
-          Enviar mensaje
+          Send message
         </button>
         <button
           className="stdButt"
@@ -32,7 +32,7 @@ export default function Messages() {
             setDisplayType("sended");
           }}
         >
-          mensajes enviados
+          Sended messages
         </button>
       </div>
 
