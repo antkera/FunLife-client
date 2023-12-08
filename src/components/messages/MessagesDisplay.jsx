@@ -1,7 +1,7 @@
 // llama a BE y trae array de mensajes
 import HashLoader from "react-spinners/HashLoader";
 import { useEffect, useState } from "react";
-import SendForm from "./sendForm";
+import SendForm from "./SendForm";
 import OneMessage from "./OneMessage";
 import service from "../../services/config";
 
