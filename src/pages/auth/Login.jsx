@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import service from "../../services/config";
 import { AuthContext } from "../../context/auth.context";
 
-
 export default function Login() {
+  const { authenticateUser } = useContext(AuthContext);
 
-  const {authenticateUser} =  useContext(AuthContext)
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,20 +18,19 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const credentials = {email, password}
+      const credentials = { email, password };
 
-      const response = await service.post("/auth/login", credentials)
-      console.log(response)
-      localStorage.setItem("authToken", response.data.authToken )
-      await authenticateUser()
-      navigate("/")
-      
+      const response = await service.post("/auth/login", credentials);
+      console.log(response);
+      localStorage.setItem("authToken", response.data.authToken);
+      await authenticateUser();
+      navigate("/");
     } catch (error) {
-      console.log(error)
-      if(error.response.status === 400){
-        setErrorMessage(error.response.data.errorMessage)
-      }else{
-        navigate("/error")
+      console.log(error);
+      if (error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage);
+      } else {
+        navigate("/error");
       }
     }
   };
@@ -43,7 +40,8 @@ export default function Login() {
       <h1>Log in</h1>
 
       <form onSubmit={handleLogin}>
-        <label>Email:</label><br />
+        <label>Email:</label>
+        <br />
         <input
           type="email"
           name="email"
@@ -51,7 +49,8 @@ export default function Login() {
           onChange={handleEmailChange}
         />
         <br />
-        <label>Password:</label><br />
+        <label>Password:</label>
+        <br />
         <input
           type="password"
           name="password"
@@ -62,10 +61,8 @@ export default function Login() {
         <hr />
 
         <button type="submit">Submit</button>
-        <p style={{color: "red"}}>{errorMessage}</p>
+        <p style={{ color: "red" }}>{errorMessage}</p>
       </form>
     </div>
   );
 }
-
-

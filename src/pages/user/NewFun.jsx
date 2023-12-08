@@ -4,9 +4,8 @@ import service from "../../services/config";
 import { AuthContext } from "../../context/auth.context";
 import OneTimebutton from "../../components/OneTimebutton";
 
-
 export default function NewFun() {
-  const baseURL= import.meta.env.VITE_SERVER_URL
+  const baseURL = import.meta.env.VITE_SERVER_URL;
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [friendsArr, setFriendsArr] = useState([]);
@@ -30,10 +29,7 @@ export default function NewFun() {
     //     this name needs to match the name used in the middleware in the backend => uploader.single("image")
 
     try {
-      const response = await service.post(
-        `${baseURL}/upload`,
-        uploadData
-      );
+      const response = await service.post(`${baseURL}/upload`, uploadData);
 
       setImageUrl(response.data.imageUrl);
       //                          |
@@ -58,7 +54,7 @@ export default function NewFun() {
   }, []);
 
   const handleNewFun = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const { title, description, date, time, isPublic } = e.target;
 
     const newFun = {
@@ -69,7 +65,7 @@ export default function NewFun() {
       mainImg: imageUrl,
       isPublic: isPublic.checked,
     };
-console.log("hola")
+    console.log("hola");
     try {
       console.log(`enviando ${{ newFun, guestsArr }}`);
       await service.post("/user/newFun", { newFun, guestsArr });
@@ -107,7 +103,7 @@ console.log("hola")
 
         <br />
 
-        <label  htmlFor="time">time:</label>
+        <label htmlFor="time">time:</label>
         <br />
         <input className="maxW" type="time" name="time" />
         <br />
@@ -134,31 +130,29 @@ console.log("hola")
             </div>
           ) : null}
         </div>
-        <div className="checkbox"><label >
-          <input  type="checkbox" name="isPublic" /> Make it public!
-        </label></div>
-
-        
-        
+        <div className="checkbox">
+          <label>
+            <input type="checkbox" name="isPublic" /> Make it public!
+          </label>
+        </div>
 
         {friendsArr.map((each) => {
           return (
             <div className="buttonContainer" key={each._id}>
               <OneTimebutton
-              className="stdButt"
+                className="stdButt"
                 funct={setGuestsArr}
                 functValue={[...guestsArr, each._id]}
                 textAfter={`${each.username} selected`}
               >
                 invite {each.username}
               </OneTimebutton>
-              
             </div>
           );
         })}
 
         <hr />
-        
+
         <button type="submit">Create</button>
         <p style={{ color: "red" }}>{errorMessage}</p>
       </form>

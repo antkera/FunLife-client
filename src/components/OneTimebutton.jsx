@@ -14,12 +14,10 @@ export default function OneTimebutton(props) {
       className={props.className}
       disabled={notDisable ? false : isDisabled}
       onClick={(e) => {
-        e.preventDefault()
-        
-        
-        
+        e.preventDefault();
+
         setIsDisabled(true);
-        funct(functValue? functValue : e);
+        funct(functValue ? functValue : e);
       }}
     >
       {isDisabled ? (textAfter ? textAfter : children) : children}

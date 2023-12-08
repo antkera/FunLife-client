@@ -42,8 +42,7 @@ export default function MessagesDisplay({ type, setDisplayType }) {
     <div className={type}>
       {type === "send" ? (
         <SendForm setDisplayType={setDisplayType} />
-      )
-       :type === "sended" || type ==="received"? (
+      ) : type === "sended" || type === "received" ? (
         messagesArr.map((eachMessage) => (
           <OneMessage
             setDisplayType={setDisplayType}
@@ -51,11 +50,15 @@ export default function MessagesDisplay({ type, setDisplayType }) {
             eachMessage={eachMessage}
           />
         ))
-      ):null}
+      ) : null}
       <p>
         <hr />
       </p>
-      {type ==="sended" || type ==="send" || type ==="received"? (<h2>{type} Messages</h2>):(<h2>{type}</h2>)} 
+      {type === "sended" || type === "send" || type === "received" ? (
+        <h2>{type} Messages</h2>
+      ) : (
+        <h2>{type}</h2>
+      )}
     </div>
   );
 }

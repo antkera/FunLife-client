@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import service from "../../services/config";
 
 export default function Signup() {
-  const navigate = useNavigate()
-  const [errorMessage, setErrorMessage] = useState("")
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const [username, setUsername] = useState("")
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,26 +20,26 @@ export default function Signup() {
 
     // ... contactar al backend para registrar al usuario aqui
     try {
-      const newUser = {username, email, password}
-      await service.post("/auth/signup", newUser)
-      navigate("/login")
+      const newUser = { username, email, password };
+      await service.post("/auth/signup", newUser);
+      navigate("/login");
     } catch (error) {
-      console.log(error)
-      if (error.response && error.response.status === 400){
-        setErrorMessage(error.response.data.errorMessage)
-      }else{navigate("/error")}
-      
+      console.log(error);
+      if (error.response && error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage);
+      } else {
+        navigate("/error");
+      }
     }
   };
 
   return (
     <div>
-
       <h1>Sign in</h1>
-    
+
       <form onSubmit={handleSignup}>
-        
-        <label>Your Name:</label><br />
+        <label>Your Name:</label>
+        <br />
         <input
           type="text"
           name="username"
@@ -49,7 +49,8 @@ export default function Signup() {
 
         <br />
 
-        <label>Your email:</label><br />
+        <label>Your email:</label>
+        <br />
         <input
           type="email"
           name="email"
@@ -59,7 +60,8 @@ export default function Signup() {
 
         <br />
 
-        <label>Password:</label><br />
+        <label>Password:</label>
+        <br />
         <input
           type="password"
           name="password"
@@ -70,11 +72,8 @@ export default function Signup() {
         <hr />
 
         <button type="submit">Done</button>
-        <p style={{color: "red"}}>{errorMessage}</p>
+        <p style={{ color: "red" }}>{errorMessage}</p>
       </form>
-      
     </div>
   );
 }
-
-

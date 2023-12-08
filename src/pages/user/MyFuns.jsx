@@ -35,8 +35,7 @@ export default function MyFuns() {
   return (
     <div className="funArrContainer">
       {funArr.map((each) => {
-        
-        return <FunCard key={each._id} fun={each} />
+        return <FunCard key={each._id} fun={each} />;
       })}
     </div>
   );

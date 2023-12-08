@@ -10,11 +10,6 @@ export default function PublicFuns() {
   const [funsArr, setFunsArr] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-
-  
-
-  
-
   const getData = async () => {
     const response = await service.get("/user/publicFuns");
     console.log(response.data);
@@ -39,15 +34,13 @@ export default function PublicFuns() {
     <div>
       <h2>Public Funs</h2>
       {funsArr.map((eachfunColl) => {
-        
         return (
           <div key={eachfunColl._id} className="flex center column margin">
             <h3 className="margin underline">{eachfunColl.title}</h3>
 
-            {eachfunColl.funs.map((eachFun) => {return(
-                <FunCard key={eachFun._id} fun={eachFun}/>
-            )})}
-
+            {eachfunColl.funs.map((eachFun) => {
+              return <FunCard key={eachFun._id} fun={eachFun} />;
+            })}
           </div>
         );
       })}

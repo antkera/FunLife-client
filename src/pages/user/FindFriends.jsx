@@ -15,9 +15,8 @@ export default function FindFriends() {
   };
 
   const addFriend = (_id) => {
-    const body = {receiver: _id, }
-    service.post("messages/friend", body );
-    
+    const body = { receiver: _id };
+    service.post("messages/friend", body);
   };
 
   const getData = async () => {
@@ -58,7 +57,7 @@ export default function FindFriends() {
               // textAfter={"already friends"}
               isDisabled={eachUser.friends.includes(payload._id)}
             >
-            request friendship
+              request friendship
             </OneTimebutton>
 
             {/* <button

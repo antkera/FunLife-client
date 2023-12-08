@@ -14,17 +14,19 @@ import MyProfile from "./pages/user/MyProfile";
 import FindFriends from "./pages/user/FindFriends";
 import MyFuns from "./pages/user/MyFuns";
 import PublicFuns from "./pages/user/PublicFuns";
-import Messages from "./pages/messages/messages";
+import Messages from "./pages/messages/Messages";
 import { useState } from "react";
 
 export default function App() {
-  const [isNavBar, setIsNavBar] = useState(false)
+  const [isNavBar, setIsNavBar] = useState(false);
   return (
     <div>
-    <span id="up"></span>
-    <button className="homeButton" onClick={() => setIsNavBar(!isNavBar)}><i className="fi fi-ss-grid"></i></button>
-    {isNavBar && <Navbar />}
-      
+      <span id="up"></span>
+      <button className="homeButton" onClick={() => setIsNavBar(!isNavBar)}>
+        <i className="fi fi-ss-grid"></i>
+      </button>
+      {isNavBar && <Navbar />}
+
       <br />
       <hr />
 
@@ -43,8 +45,11 @@ export default function App() {
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <div className="back_to_top_container"><a id="back_to_top"  href="#up"><i className="fi fi-ss-angle-double-small-up"></i></a></div>
-      
+      <div className="back_to_top_container">
+        <a id="back_to_top" href="#up">
+          <i className="fi fi-ss-angle-double-small-up"></i>
+        </a>
+      </div>
     </div>
   );
 }

@@ -10,8 +10,7 @@ export default function FunCard(props) {
   //context & navigate
   const { payload } = useContext(AuthContext);
   const navigate = useNavigate();
-  const baseURL= import.meta.env.VITE_SERVER_URL
-
+  const baseURL = import.meta.env.VITE_SERVER_URL;
 
   //states
   const [isEditable, setIsEditable] = useState(false);
@@ -26,7 +25,6 @@ export default function FunCard(props) {
   );
   const [formTime, setFormTime] = useState(props.fun.time);
   const [formDate, setFormDate] = useState(props.fun.date);
-  
 
   //* -------------------------------------------------------------------------------------------FUNCION UPLOAD
 
@@ -41,10 +39,7 @@ export default function FunCard(props) {
     uploadData.append("image", event.target.files[0]);
 
     try {
-      const response = await service.post(
-        `${baseURL}/upload`,
-        uploadData
-      );
+      const response = await service.post(`${baseURL}/upload`, uploadData);
 
       setImageUrl(response.data.imageUrl);
 
@@ -59,9 +54,7 @@ export default function FunCard(props) {
   //*  ------------------------------------------------------------------------------------------FUNCION FORK
 
   const handleFork = async (e) => {
-  e.preventDefault()
-  
- 
+    e.preventDefault();
 
     const forkFun = {
       collection: props.fun.collection,
@@ -98,10 +91,10 @@ export default function FunCard(props) {
     month: "short",
     day: "numeric",
   });
-  const formattedDate = new Date(formDate).toLocaleDateString('en-us', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
+  const formattedDate = new Date(formDate).toLocaleDateString("en-us", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
   });
 
   const handleEdit = async () => {
@@ -114,8 +107,8 @@ export default function FunCard(props) {
 
   return isEditable ? (
     //--------------------------------------------------formulario fork
-    
-      <form className={props.className || "funCard "} onSubmit={handleFork}>
+
+    <form className={props.className || "funCard "} onSubmit={handleFork}>
       <h2>{formCollection.title}</h2>
       {imageUrl ? (
         <img src={imageUrl} alt="imagen" />
@@ -150,19 +143,34 @@ export default function FunCard(props) {
 
       <br />
       <label htmlFor="date">When?</label>
-      <input  onChange={(e) => {
-        setFormDate(e.target.value);
-      }} type="date" name="date" value={formattedDate} />
+      <input
+        onChange={(e) => {
+          setFormDate(e.target.value);
+        }}
+        type="date"
+        name="date"
+        value={formattedDate}
+      />
 
       <label htmlFor="time">hour?</label>
-      <input  onChange={(e) => {
-        setFormTime(e.target.value);
-      }} type="time" name="time" />
+      <input
+        onChange={(e) => {
+          setFormTime(e.target.value);
+        }}
+        type="time"
+        name="time"
+      />
 
       <label>
-        <input onChange={(e) => {console.log(e.target.checked)
-        setIschecked(e.target.checked)}}
-        type="checkbox" name="isPublic" /> Make it public!
+        <input
+          onChange={(e) => {
+            console.log(e.target.checked);
+            setIschecked(e.target.checked);
+          }}
+          type="checkbox"
+          name="isPublic"
+        />{" "}
+        Make it public!
       </label>
 
       <ChooseFriends
@@ -172,7 +180,6 @@ export default function FunCard(props) {
       />
 
       <div className="flex center">
-
         <OneTimebutton funct={handleFork}>Fork</OneTimebutton> <hr />
         <OneTimebutton
           notDisable={true}
@@ -185,8 +192,7 @@ export default function FunCard(props) {
       <div>
         <hr />
       </div>
-      </form>
-    
+    </form>
   ) : (
     //---------------------------------------------------renderizado
     <div className={props.className || "funCard"}>

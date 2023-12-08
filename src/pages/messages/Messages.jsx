@@ -10,36 +10,33 @@ export default function Messages() {
     //llamar al BE
     <div>
       <div className="buttonContainer">
-        <button className="stdButt" 
+        <button
+          className="stdButt"
           onClick={() => {
             setDisplayType("received");
           }}
         >
-          mensajes recibidos 
-        </button >
-        <button className="stdButt"
+          mensajes recibidos
+        </button>
+        <button
+          className="stdButt"
           onClick={() => {
             setDisplayType("send");
           }}
         >
-          Enviar mensaje 
+          Enviar mensaje
         </button>
-        <button className="stdButt"
+        <button
+          className="stdButt"
           onClick={() => {
             setDisplayType("sended");
           }}
         >
-          mensajes enviados 
+          mensajes enviados
         </button>
       </div>
-      
 
-      <MessagesDisplay type={displayType} setDisplayType={setDisplayType}/>
-
-      
-      </div>
-
-      
-    
+      <MessagesDisplay type={displayType} setDisplayType={setDisplayType} />
+    </div>
   );
 }
