@@ -88,37 +88,43 @@ NOTE: to copy this readme structure simply click on `Raw` on the top right of th
 
 
 
-
-
 # Client Structure
 
 ## User Stories
 
-**NOTE -**  List here all the actions a user can do in the app. Example:
 
-- **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault 
-- **500** - As a user I want to see a nice error page when the super team screws it up so that I know that is not my fault
-- **homepage** - As a user I want to be able to access the homepage so that I see what the app is about and login and signup
-- **sign up** - As a user I want to sign up on the webpage so that I can see all the events that I could attend
-- **login** - As a user I want to be able to log in on the webpage so that I can get back to my account
-- **logout** - As a user I want to be able to log out from the webpage so that I can make sure no one will access my account
-- **events list** - As a user I want to see all the events available so that I can choose which ones I want to attend
-- **events create** - As a user I want to create an event so that I can invite others to attend
+- **404** - As a user, I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault.
+- **500** - As a user, I want to see a nice error page when the super team screws it up so that I know that it is not my fault.
+- **Homepage** - As a user, I want to be able to access the homepage so that I can see what the app is about and log in and sign up.
+- **Sign up** - As a user, I want to sign up on the webpage so that I can see all the events that I could attend.
+- **Login** - As a user, I want to be able to log in on the webpage so that I can get back to my account.
+- **Logout** - As a user, I want to be able to log out from the webpage so that I can make sure no one will access my account.
+- **Create New Fun** - As a user, I want to create a new event (fun) so that I can invite others to attend.
+- **View My Funs** - As a user, I want to see the events (funs) I have created.
+- **View My Profile** - As a user, I want to view and edit my profile.
+- **Find Friends** - As a user, I want to find and connect with friends on the platform.
+- **View Public Funs** - As a user, I want to see public events (funs) on the platform.
+- **View Messages** - As a user, I want to view my messages.
 
 ## Client Routes
 
-**NOTE -** Use below table to list your frontend routes
+**NOTE -** Use the table below to list your frontend routes
 
 ## React Router Routes (React App)
-| Path                      | Page            | Components        | Permissions              | Behavior                                                      |
-| ------------------------- | ----------------| ----------------  | ------------------------ | ------------------------------------------------------------  |
-| `/`                       | Home            |                   | public                   | Home page                                                     |
-| `/signup`                 | Signup          |                   | anon only `<IsAnon>`     | Signup form, link to login, navigate to homepage after signup |
-| `/login`                  | Login           |                   | anon only `<IsAnon>`     | Login form, link to signup, navigate to homepage after login  |
-| `/profile`                | Profile         | EditProfile       | user only `<IsPrivate>`  | Navigate to homepage after logout, expire session             |
-| `/games/list`             | GameList        | AddGame, GameCard | user only `<IsPrivate>`  | Shows all films on backlog                                    |
-| `/games/edit`             | GamesEdit       |                   | user only `<IsPrivate>`  | Shows all games on backlog                                    |
-| `/games/favourites`       | FavouriteList   | GameCard          | user only `<IsPrivate>`  | Shows all games on backlog                                    |
+
+| Path                   | Page          | Components           | Permissions              | Behavior                                                      |
+| ---------------------- | ------------- | -------------------- | ------------------------ | ------------------------------------------------------------  |
+| `/`                    | Home          |                    | Public                   | Home page                                                     |
+| `/signup`              | Signup        |                    | Anon only `<IsAnon>`    | Signup form, link to login, navigate to homepage after signup |
+| `/login`               | Login         |                    | Anon only `<IsAnon>`    | Login form, link to signup, navigate to homepage after login  |
+| `/user/newFun`         | NewFun        |                    | User only `<IsPrivate>` | Page for creating a new event (fun)                          |
+| `/user/myFuns`         | MyFuns        |                    | User only `<IsPrivate>` | Page displaying user's own events (funs)                     |
+| `/user/myProfile`      | MyProfile     |                    | User only `<IsPrivate>` | Page displaying user's profile                                 |
+| `/user/findFriends`    | FindFriends   |                    | User only `<IsPrivate>` | Page for finding and connecting with friends                   |
+| `/user/publicFuns`     | PublicFuns    |                    | User only `<IsPrivate>` | Page displaying public events (funs)                          |
+| `/messages/`           | Messages      |                    | User only `<IsPrivate>` | Page for displaying messages                                   |
+| `/error`               | Error         |                    | Public                   | Error page                                                    |
+| `*`                    | NotFound      |                    | Public                   | 404 Not Found page                                            |
 
 ## Other Components
 
@@ -128,46 +134,29 @@ NOTE: to copy this readme structure simply click on `Raw` on the top right of th
 ## Services
 
 - Auth Service
-  - auth.login(user)
-  - auth.signup(user)
-  - auth.verify()
+  - `auth.login(user)`
+  - `auth.signup(user)`
+  - `auth.verify()`
 
-- Backlog Service
-  - game.filter(type, status)
-  - game.detail(id)
-  - game.add(id)
-  - game.delete(id)
-  - game.update(id)
-  
+- Event Service
+  - `event.list()`
+  - `event.create(eventDetails)`
+
 - External API
-  - gameApi.details
-  - gameApi.list
-  
+  - `eventApi.details`
+  - `eventApi.list`
+
 ## Context
 
-- auth.context
-- theme.context
-  
+- `auth.context`
+- `theme.context`
 ## Links
 
-### Collaborators
 
-[Developer 1 name](www.github-url.com)
 
-[Developer 2 name](www.github-url.com)
+[Repository Link Client](https://github.com/antkera/FunLife-client)
 
-### Project
+[Repository Link Server](https://github.com/antkera/FunLife-server)
 
-[Repository Link Client](www.your-github-url-here.com)
+[Deploy Link](https://funlifeapp.netlify.app/)
 
-[Repository Link Server](www.your-github-url-here.com)
-
-[Deploy Link](www.your-deploy-url-here.com)
-
-### Trello
-
-[Link to your trello board](www.your-trello-url-here.com)
-
-### Slides
-
-[Slides Link](www.your-slides-url-here.com)
