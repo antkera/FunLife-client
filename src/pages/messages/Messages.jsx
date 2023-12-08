@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MessagesDisplay from "../../components/messages/messagesDisplay";
+import MessagesDisplay from "../../components/messages/MessagesDisplay";
 
 export default function Messages() {
   const [isCreating, setIsCreating] = useState(false);
