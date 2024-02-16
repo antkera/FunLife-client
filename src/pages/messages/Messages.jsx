@@ -11,7 +11,7 @@ export default function Messages() {
     <div>
       <div className="buttonContainer">
         <button
-          className="stdButt"
+          className="button"
           onClick={() => {
             setDisplayType("received");
           }}
@@ -19,7 +19,7 @@ export default function Messages() {
           Received messages
         </button>
         <button
-          className="stdButt"
+          className="button"
           onClick={() => {
             setDisplayType("send");
           }}
@@ -27,7 +27,7 @@ export default function Messages() {
           Send message
         </button>
         <button
-          className="stdButt"
+          className="button"
           onClick={() => {
             setDisplayType("sended");
           }}

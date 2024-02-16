@@ -1,316 +1,400 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&family=Varela+Round&display=swap");
+
+:root {
+  --color: blue;
 }
-body {
-  font-family: Arial, sans-serif;
+.test {
+  border: solid;
+  background-color: red;
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-100%);
+    margin-top: -100vw;
+  }
+  to {
+    transform: translateY(0);
+    margin-top: 0vw;
+  }
+}
+@keyframes slideOutToTop {
+  to {
+    transform: translateY(-200%);
+    opacity: 0;
+
+    margin-top: -100vw;
+  }
+}
+
+/*Basics*/ /********************************************************************************************************************/
+* {
+  font-family: "Varela Round", sans-serif;
+  font-style: normal;
+  font-size: 4vw;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  transition: all 1s;
+}
+h1,
+h3,
+h4,
+p {
+  font-family: "Righteous", cursive;
   margin: 0;
-  padding: 0;
-
+  padding: 0.5em;
 }
-header {
+svg {
+  width: 2rem;
+  padding-top: 0.2rem;
+}
+hr {
+  /* height: 0.5px; */
+  border: solid 0.5px var(--color);
+}
+.alert {
+  color: red;
+}
+.mainTitle {
+  font-size: 8.5vw;
+  text-align: center;
+}
+.button {
+  border: solid 3px var(--color);
   border-radius: 10px;
-  background-color: rgba(0, 255, 255, 0.196);
-  color: white;
-  padding: 10px;
-  text-align: center;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+strong {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: italic;
 }
 
-section {
-  padding: 20px;
-  text-align: center;
+/* Navbar.jsx */ /**************************************************************************/
+.slideOutToTop {
+  animation: slideOutToTop 0.5s ease-out;
 }
-
-footer {
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
+.logOut {
+  align-self: center;
   width: 100%;
-  
+  margin-top: 3vw;
+  padding-top: 0.3rem;
 }
-div {
-  transition-duration: 1s;
-  border-radius: 10px;
+
+.homeButton:hover {
+  border: solid;
+  border-width: 1px;
 }
-img {
-  border-radius: 20px;
-  /* margin-top: -30px; */
+.homeButton {
+  color: blue;
+  border: none;
+  position: sticky;
+  top: 0.5rem;
+  background-color: white;
 }
-textarea {
-  height: 10em;
-  /* width: 500px; */
+
+/* .exitButton:hover {
+  align-self: center;
+  padding-top: 0.2rem;
+  background-color: rgb(161, 39, 39);
+  border: solid;
+  color: white;
+  background-color: rgb(251, 166, 149);
+  width: 2rem;
+  border-radius: 5px;
+} */
+.exitButton i {
+  width: 1rem;
+  padding-top: 0.2rem;
 }
 a {
   text-decoration: none;
-  color: rgb(61, 129, 72);
 }
-
-.flex {
-  display: flex;
-}
-.column {
-  flex-direction: column;
-}
-.center {
-  justify-content: center;
-}
-.margin {
-  margin: 20px;
-}
-.underline {
-  text-decoration: underline;
-}
-
-.spinnerContainer {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  /* margin-top: 300px; */
-}
-.funCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: rgba(0, 255, 255, 0.192);
-  padding: 20px;
-  margin: 20px -15px;
-  border-radius: 50px;
-  transition-duration: 1s;
-}
-.funArrContainer {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: center;
-  background-color: rgba(0, 255, 255, 0.192);
-  padding: 20px;
-  margin: 20px -15px;
-  border-radius: 50px;
-  transition-duration: 1s;
-}
-.chooseFrineds {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: space-between;
-
-  background-color: rgba(0, 255, 255, 0.192);
-  padding: 20px;
-  margin: 50px;
-  border-radius: 50px;
-  transition-duration: 1s;
-}
-
-.chooseFrinedsContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: space-between;
-  padding: 20px;
-  margin: 20px -15px;
-  border-radius: 30px;
-  transition-duration: 1s;
-}
-.hidden {
-  display: none;
-}
-.transition {
-  transition-duration: 2s;
-}
-.messageForm {
-  display: flex;
-}
-.border {
-  background-color: green;
-  border: solid red;
-}
-.borderRadius {
-  border-radius: 10px;
-}
-.messagesContainer {
-  display: flex;
-  justify-content: space-evenly;
-}
-.received {
-  background-color: rgba(0, 253, 253, 0.708);
-  color: black;
-  display: flex;
-  flex-direction: column-reverse;
-}
-.send {
-  background-color: rgb(6, 155, 255);
-  color: rgb(0, 0, 0);
-  display: flex;
-  flex-direction: column-reverse;
-}
-.sended {
-  display: flex;
-  flex-direction: column-reverse;
-  background-color: rgba(34, 255, 189, 0.72);
-  color: black;
-}
-.navbar {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-content: center;
-  flex-wrap: wrap;
-}
-.navspan {
-  max-width: 200px;
-  color: bisque;
-  padding: 0 30px;
-  border: solid;
-  border-radius: 10px;
-}
-.navspan a {
-  color: aqua;
-}
-.homeButton {
-  padding: 10px 10px 4px 10px;
-  background-color: rgba(0, 255, 255, 0);
-  font-size: 30px;
-  color: rgb(255, 255, 255);
-}
-.exitButton {
-  padding: 10px 15px;
-  border-radius: 50px;
-  transition: 1s;
-  color: rgb(255, 255, 255);
-  margin: 15px;
-  background-color: unset;
-  font-size: 25px;
-}
-.exitButton:hover {
-  color: rgba(255, 0, 0, 0.557);
-  margin: 15px;
-  background-color: rgb(0, 6, 191);
-  font-size: 25px;
-}
-.stdButt {
-  background-color: rgba(0, 255, 255, 0.143);
-  border-radius: 30px;
-  padding: 0.2rem;
-  margin: 10px;
-  transition: all 1s;
-  color: aqua;
-}
-.stdButt:hover {
-  background-color: rgba(0, 255, 255, 0.913);
-  transition: all 1s;
-  border-radius: 30px;
-  padding: 0.2rem;
-  margin: 5px;
-  color: black;
+.sticked {
+  position: sticky;
+  top: 0.5rem;
+  transition: all 3s;
 }
 .buttonContainer {
+  position: relative;
+  z-index: 5;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
-.upButton {
-  display: grid;
-  position: sticky;
-  margin-bottom: 100px;
-  border: solid red;
-  background-color: white;
-  font-size: 50px;
-}
-
-#back_to_top {
-  display: block;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  transition: all 3s;
-  text-align: center;
-  border-radius: 0 0 500px 500px;
-  font-size: 30px;
-
-  color: #0008ff;
-  border: 2px solid;
-}
-#back_to_top:hover {
-  display: block;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  transition: all 1s;
-  text-align: center;
-
-  color: #fff;
-  border: 2px solid;
-  border-radius: 50px 50px 15px 15px;
-}
-
 .back_to_top_container {
-  background-color: rgba(0, 255, 255, 0);
+  color: rgba(0, 0, 0, 0.434);
   position: fixed;
-  right: 40px;
-  bottom: 40px;
-}
-
-.back_to_top_container :hover {
-  border: unset;
-  background-color: blue;
+  bottom: 1rem;
+  right: 1rem;
   border-radius: 50px;
-
-  right: 40px;
-  bottom: 40px;
+  transition-duration: 0.5s;
 }
 .back_to_top_container:hover {
-  background-color: #fff;
+  box-shadow: 0 4px 8px var(--color);
+  color: var(--color);
 }
-.oneMessage {
-  border: solid;
-  margin: 10px;
+#Nav {
+  position: relative;
+  width: 100%;
+  background-color: white;
+}
+.showTransition {
+  width: fit-content;
+  animation: slideInFromTop 0.5s ease-out;
+  transition: all 1s;
+}
+.notShow {
+  position: relative;
+  top: 0.5rem;
+  animation: slideOutToTop 1s ease-out;
+}
+.navInt {
+  /* height: 10rem; */
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.navbar2 {
+  justify-self: center;
+  /* height: 8.5rem; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center;
+  background-color: White;
+}
+.navbar3 {
+  /* height: 8.5rem; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.navspan {
+  transition: all 0.5s;
+  margin: 0.1rem;
+  align-self: center;
+}
+.navspan a {
+  white-space: nowrap;
+  font-size: 1.5rem;
+  color: black;
+  padding: 0.3rem;
+}
+.navspan:hover {
+  border-bottom: solid 1px var(--color);
+  box-shadow: 2px 2px 5px var(--color);
+}
+.navspan a.active {
+  border-bottom: solid 1px var(--color);
+  box-shadow: 2px 2px 5px var(--color);
+}
+
+/* Home.jsx */ /**************************************************************************/
+
+#Home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 12.5rem;
+  font-size: 1.5rem;
+}
+.flex {
+  transition: all 1s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.text {
+  font-size: 4vw;
+}
+.header {
+  /* background-image: linear-gradient(to right, var(--color), #ffff9390); */
+  margin: -2vw;
+  justify-content: center;
+}
+/*NewFun.jsx*/ /*************************************************************************/
+
+.flexForm {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-self: center;
 }
 .CreateFunDiv {
   display: flex;
   flex-direction: column;
+  align-self: center;
 }
-.CreateFunForm {
+.inputs input,
+textarea {
+  transition: all 1s;
+  border: none;
+  border-bottom: solid 0.5px var(--color);
+}
+.inputs input:focus,
+textarea:focus {
+  border-color: var(--color);
+  box-shadow: 2px 2px 5px var(--color);
+  outline: none;
+}
+.inputs {
+  width: 90%;
+  margin: 5vw;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+.inputs label {
+  text-align: center;
+  /* background-image: linear-gradient(to right, var(--color), #f2f27b); */
+  margin: 2vw;
 }
 
-.CreateFunForm label,
-input,
-textarea {
-  border-radius: 15px;
-  margin: 7px;
+.row {
+  /* background-color: lightgreen; */
+  width: 80vw;
+  flex-direction: row;
 }
-.checkbox {
-  align-self: center;
-  border-radius: 20px;
-  max-width: 150px;
-  border: solid white;
-  size: 15px;
-  margin-top: 15px;
-  padding-top: 15px;
+.row label {
+  margin: 2vw;
 }
-.maxW {
-  max-width: 100px;
-  align-self: center;
+
+/*Spinner*/ /****************************************************************************************/
+
+.spinnerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem;
 }
-.homeContainer {
+
+/* PublicFuns.jsx*/ /***************************************************************************************/
+.funContainer {
+  align-content: center;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
 }
-.homeContainer img {
-  max-width: 100px;
+.funCard img {
+  width: 100%;
+  border-radius: 10px;
 }
-.HomeColl {
+.publicTitle {
+  color: var(--color);
+  font-size: 1.2em;
+  justify-self: center;
+}
+.funCard {
+  box-shadow: 2px 2px 5px var(--color);
+  padding: 2vw;
+  margin: 2vw;
+  border-radius: 10px;
+}
+
+/*MyProfile*/ /***********************************************************************************/
+
+.profileContainer {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: baseline;
+  flex-direction: column;
 }
-.isPublic{
-  font-size: 10px;
-  text-decoration: underline;
+.profileContainer h3 {
+  align-self: center;
+}
+
+/*Messages*/ /*******************************************************************************************/
+.note {
+  font-size: 0.8em;
+  color: blue;
+}
+
+/*Media Queries*/ /********************************************************************************************************************/
+@media (min-width: 400px) {
+  /* Estilos para pantallas con un ancho máximo de 600px */
+  * {
+    font-size: 3.5vw;
+  }
+}
+@media (min-width: 600px) {
+  /* Estilos para pantallas con un ancho máximo de 600px */
+  * {
+    font-size: 3vw;
+  }
+  .navspan a {
+    white-space: nowrap;
+    font-size: 1.3rem;
+    color: black;
+    padding: 0.3rem;
+  }
+}
+@media (min-width: 800px) {
+  /* Estilos para pantallas con un ancho máximo de 600px */
+  * {
+    font-size: 2.5vw;
+  }
+  .navspan a {
+    white-space: nowrap;
+    font-size: 1.2rem;
+    color: black;
+    padding: 0.3rem;
+  }
+}
+@media (min-width: 1000px) {
+  /* Estilos para pantallas con un ancho máximo de 600px */
+  * {
+    font-size: 1.8vw;
+  }
+  .navInt {
+    justify-content: center;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+  }
+  .navspan a {
+    white-space: nowrap;
+    font-size: 1rem;
+    color: black;
+    padding: 0.5rem;
+    margin: 0.3rem;
+  }
+}
+@media (min-width: 1300px) {
+  /* Estilos para pantallas con un ancho máximo de 600px */
+  * {
+    font-size: 1.4vw;
+  }
+  .navspan a {
+    white-space: nowrap;
+    font-size: 1.5rem;
+    color: black;
+    padding: 0.5rem;
+    margin: 0.3rem;
+  }
+}
+@media (min-width: 1500px) {
+  /* Estilos para pantallas con un ancho máximo de 600px */
+  * {
+    font-size: 1.2vw;
+  }
+  .navspan a {
+    white-space: nowrap;
+    font-size: 1.3rem;
+    color: black;
+    padding: 0.7rem;
+    margin: 0.5rem;
+  }
 }

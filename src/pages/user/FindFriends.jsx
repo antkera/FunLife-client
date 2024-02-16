@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import service from "../../services/config";
 import { AuthContext } from "../../context/auth.context";
-import HashLoader from "react-spinners/HashLoader";
+import SyncLoader from "react-spinners/SyncLoader";
 import OneTimebutton from "../../components/OneTimebutton";
 
 export default function FindFriends() {
@@ -21,7 +21,6 @@ export default function FindFriends() {
 
   const getData = async () => {
     const response = await service.get("/user/findFriends");
-    console.log(response.data);
     setPeopleArr(response.data);
     setTimeout(() => {
       setIsLoading(false);
@@ -33,15 +32,15 @@ export default function FindFriends() {
 
   if (isLoading === true) {
     return (
-      <div className="spinnerContainer flex center">
-        <HashLoader color={"orange"} size={50} />
+      <div className="spinnerContainer">
+        <SyncLoader color={"blue"} size={50} />
       </div>
     );
   }
 
   return (
     <div>
-      <h2>Fun People</h2>
+      <h1 className="mainTitle">Fun People</h1>
       {peopleArr.map((eachUser) => {
         if (eachUser._id === payload._id) {
           return;
@@ -51,7 +50,7 @@ export default function FindFriends() {
             <p className="margin">{eachUser.username}</p>
 
             <OneTimebutton
-              className="margin"
+              className="button "
               funct={addFriend}
               functValue={eachUser._id}
               // textAfter={"already friends"}

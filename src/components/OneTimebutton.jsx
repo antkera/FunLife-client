@@ -1,4 +1,3 @@
-import { CloudConfig } from "@cloudinary/url-gen";
 import { useEffect, useState } from "react";
 
 export default function OneTimebutton(props) {
@@ -11,7 +10,7 @@ export default function OneTimebutton(props) {
 
   return (
     <button
-      className={props.className || "stdButt"}
+      className={props.className || "button"}
       disabled={notDisable ? false : isDisabled}
       onClick={(e) => {
         e.preventDefault();

@@ -19,9 +19,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const credentials = { email, password };
-
       const response = await service.post("/auth/login", credentials);
-      console.log(response);
       localStorage.setItem("authToken", response.data.authToken);
       await authenticateUser();
       navigate("/");

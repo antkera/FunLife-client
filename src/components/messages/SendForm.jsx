@@ -18,7 +18,9 @@ export default function SendForm({ setDisplayType }) {
         message: message.value,
       });
       setDisplayType(response.data);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
 
     console.log(e.target);
   };

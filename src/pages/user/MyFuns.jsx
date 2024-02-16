@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import HashLoader from "react-spinners/HashLoader";
+import SyncLoader from "react-spinners/SyncLoader";
 import service from "../../services/config";
 import FunCard from "../../components/FunCard";
 
@@ -11,7 +11,6 @@ export default function MyFuns() {
     try {
       const response = await service.get("/user/myFuns");
       setFunArr(response.data.funs);
-      console.log(funArr);
       setTimeout(() => {
         setIsLoading(false);
       }, 1500);
@@ -27,7 +26,7 @@ export default function MyFuns() {
   if (isLoading === true) {
     return (
       <div className="spinnerContainer">
-        <HashLoader color={"orange"} size={100} />
+        <SyncLoader color={"blue"} size={50} />
       </div>
     );
   }
