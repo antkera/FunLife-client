@@ -1,7 +1,7 @@
 import { useState } from "react";
 import service from "../../services/config";
 
-export default function OneMessage({ eachMessage, setDisplayType }) {
+export default function OneMessage({ eachMessage, setDisplayType, type }) {
   const [isDisabled, setIsDisabled] = useState(false);
   const { sender, receiver, fun, isFresh, message, category, timestamps, _id } =
     eachMessage;
@@ -9,10 +9,13 @@ export default function OneMessage({ eachMessage, setDisplayType }) {
 
   const handleBeFriends = async (id) => {
     setIsDisabled(true);
-    const deleteRes = await service.delete(`/messages/delete/${_id}`);
-    const response = await service.patch("/user/addFriend", { id });
-
-    setDisplayType(response.data);
+    if (_id !== sender) {
+      await service.delete(`/messages/delete/${_id}`);
+      const response = await service.patch("/user/addFriend", { id });
+      setDisplayType(response.data);
+    } else {
+      setDisplayType("You can't accept the invitation you've sent! ");
+    }
   };
   const noNew = async () => {
     try {
@@ -33,15 +36,19 @@ export default function OneMessage({ eachMessage, setDisplayType }) {
       <p>{fun && fun.description}</p>
       <p>{message}</p>
       {category === "friendReq" ? (
-        <button
-          disabled={isDisabled}
-          className="stdButt"
-          onClick={() => {
-            handleBeFriends(sender._id);
-          }}
-        >
-          Be friend
-        </button>
+        type !== "sended" ? (
+          <button
+            disabled={type === "sended" ? !isDisabled : isDisabled} // isDisabled === false
+            className="stdButt"
+            onClick={() => {
+              handleBeFriends(sender);
+            }}
+          >
+            Be friend
+          </button>
+        ) : (
+          <p className="note">Waiting {receiver.username}</p>
+        )
       ) : (
         "adios"
       )}

@@ -34,7 +34,6 @@ export default function FunCard(props) {
     }
 
     setIsUploading(true);
-    console.log(event.target.files[0]);
     const uploadData = new FormData();
     uploadData.append("image", event.target.files[0]);
 
@@ -65,12 +64,9 @@ export default function FunCard(props) {
       isPublic: isChecked,
     };
 
-    console.log(forkFun);
-
     try {
       navigate("/user/myFuns");
       await service.post("/user/forkFun", { forkFun, guestsArr });
-      console.log(`enviando ${{ newFun: forkFun, guestsArr }}`);
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 400) {
@@ -98,10 +94,12 @@ export default function FunCard(props) {
   });
 
   const handleEdit = async () => {
+    //implement next time
     console.log("isPublic");
   };
 
   const handleDelete = async () => {
+    //implement next time
     console.log("Delete");
   };
 
@@ -149,7 +147,6 @@ export default function FunCard(props) {
         }}
         type="date"
         name="date"
-        
       />
 
       <label htmlFor="time">hour?</label>
@@ -164,7 +161,6 @@ export default function FunCard(props) {
       <label>
         <input
           onChange={(e) => {
-            console.log(e.target.checked);
             setIschecked(e.target.checked);
           }}
           type="checkbox"
@@ -183,8 +179,9 @@ export default function FunCard(props) {
         <OneTimebutton funct={handleFork}>Fork</OneTimebutton> <hr />
         <OneTimebutton
           notDisable={true}
-          funct={() => {setIsEditable(!isEditable)}}
-          
+          funct={() => {
+            setIsEditable(!isEditable);
+          }}
         >
           back
         </OneTimebutton>
@@ -196,7 +193,7 @@ export default function FunCard(props) {
   ) : (
     //---------------------------------------------------renderizado
     <div className={props.className || "funCard"}>
-      <h2>{formCollection.title}</h2>
+      <h2 className="mainTitle">{formCollection.title}</h2>
       {imageUrl ? (
         <img src={imageUrl} alt="imagen" />
       ) : (
@@ -214,16 +211,22 @@ export default function FunCard(props) {
         See you on <strong>{when}</strong> at <strong>{formTime}</strong>
       </p>
       <div>
-      <div><p className="isPublic">{props.fun.isPublic? "This Fun is public" : "This Fun is not public"}</p></div>
-        <hr />
+        <div>
+          <p className="isPublic">
+            {props.fun.isPublic
+              ? "This Fun is public"
+              : "This Fun is not public"}
+          </p>
+        </div>
       </div>
       <div className="flex center">
         {}
         <OneTimebutton funct={handleEdit}>Edit</OneTimebutton> <hr />
         <OneTimebutton
           notDisable={true}
-          funct={() => {setIsEditable(!isEditable)}}
-          
+          funct={() => {
+            setIsEditable(!isEditable);
+          }}
         >
           Fork
         </OneTimebutton>{" "}

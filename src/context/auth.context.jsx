@@ -17,8 +17,6 @@ const AuthWrapper = (props) => {
     } catch (error) {
       console.log(error);
       setIsLoggedIn(false);
-      console.log("logeed in false");
-
       setIsLoading(false);
     }
   };

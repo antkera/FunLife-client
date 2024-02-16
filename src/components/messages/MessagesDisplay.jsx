@@ -1,5 +1,5 @@
 // llama a BE y trae array de mensajes
-import HashLoader from "react-spinners/HashLoader";
+import SyncLoader from "react-spinners/SyncLoader";
 import { useEffect, useState } from "react";
 import SendForm from "./SendForm";
 import OneMessage from "./OneMessage";
@@ -33,7 +33,7 @@ export default function MessagesDisplay({ type, setDisplayType }) {
   if (isLoading === true) {
     return (
       <div className="spinnerContainer">
-        <HashLoader color={"orange"} size={100} />
+        <SyncLoader color={"blue"} size={50} />
       </div>
     );
   }
@@ -42,20 +42,23 @@ export default function MessagesDisplay({ type, setDisplayType }) {
     <div className={type}>
       {type === "send" ? (
         <SendForm setDisplayType={setDisplayType} />
-      )
-       :type === "sended" || type ==="received"? (
+      ) : type === "sended" || type === "received" ? (
         messagesArr.map((eachMessage) => (
           <OneMessage
+            type={type}
             setDisplayType={setDisplayType}
             key={eachMessage._id}
             eachMessage={eachMessage}
           />
         ))
-      ):null}
-      <p>
-        <hr />
-      </p>
-      {type ==="sended" || type ==="send" || type ==="received"? (<h2>{type} Messages</h2>):(<h2>{type}</h2>)} 
+      ) : null}
+      <p></p>
+      <hr />
+      {type === "sended" || type === "send" || type === "received" ? (
+        <h2>{type} Messages</h2>
+      ) : (
+        <h2>{type}</h2>
+      )}
     </div>
   );
 }

@@ -19,36 +19,88 @@ import { useState } from "react";
 
 export default function App() {
   const [isNavBar, setIsNavBar] = useState(false);
+  const [transition, setTransition] = useState(true);
+  const handleNavbar = () => {
+    if (isNavBar === transition) {
+      setTransition(!transition);
+    }
+    if (isNavBar) {
+      setTransition(false);
+      setTimeout(() => {
+        setIsNavBar(false);
+      }, 300);
+    } else {
+      setIsNavBar(!isNavBar);
+    }
+  };
   return (
-    <div>
+    <div className="App">
       <span id="up"></span>
-      <button className="homeButton" onClick={() => setIsNavBar(!isNavBar)}>
-        <i className="fi fi-ss-grid"></i>
-      </button>
-      {isNavBar && <Navbar />}
+      <div className="flex">
+        <div className="buttonContainer">
+          <button
+            className="homeButton"
+            onClick={() => {
+              handleNavbar();
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div className="flexCenter">
+          {isNavBar && <Navbar transition={transition} />}
+        </div>
 
-      <br />
-      <hr />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/user/newFun" element={<NewFun />} />
+          <Route path="/user/myFuns" element={<MyFuns />} />
+          <Route path="/user/myProfile" element={<MyProfile />} />
+          <Route path="/user/findFriends" element={<FindFriends />} />
+          <Route path="/user/publicFuns" element={<PublicFuns />} />
+          <Route path="/messages/" element={<Messages />} />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/user/newFun" element={<NewFun />} />
-        <Route path="/user/myFuns" element={<MyFuns />} />
-        <Route path="/user/myProfile" element={<MyProfile />} />
-        <Route path="/user/findFriends" element={<FindFriends />} />
-        <Route path="/user/publicFuns" element={<PublicFuns />} />
-        <Route path="/messages/" element={<Messages />} />
-
-        {/* error FE routes */}
-        <Route path="/error" element={<Error />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <div className="back_to_top_container">
-        <a id="back_to_top" href="#up">
-          <i className="fi fi-ss-angle-double-small-up"></i>
-        </a>
+          {/* error FE routes */}
+          <Route path="/error" element={<Error />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+      <div
+        className="back_to_top_container"
+        onClick={() => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth", // Animación suave de scroll
+          });
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          height="100%"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M12 19V5M5 12l7-7 7 7" />
+        </svg>
       </div>
     </div>
   );

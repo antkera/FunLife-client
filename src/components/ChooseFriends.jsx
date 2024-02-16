@@ -10,7 +10,6 @@ export default function ChooseFriends({ _id, setGuestsArr, guestsArr }) {
 
   const showFriends = async () => {
     const response = await service.get("/user/myFriends");
-    console.log(response.data);
     setFriendsArr(response.data.friends);
   };
   //*  ------------------------------------------------------------------------------------------FUNCION SHOWFRIENDS

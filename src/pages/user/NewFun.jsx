@@ -14,15 +14,12 @@ export default function NewFun() {
   const [isUploading, setIsUploading] = useState(false);
 
   const handleFileUpload = async (event) => {
-    // console.log("The file to be uploaded is: ", e.target.files[0]);
-
     if (!event.target.files[0]) {
       // to prevent accidentally clicking the choose file button and not selecting a file
       return;
     }
 
     setIsUploading(true); // to start the loading animation
-    console.log(event.target.files[0]);
     const uploadData = new FormData(); // images and other files need to be sent to the backend in a FormData
     uploadData.append("image", event.target.files[0]);
     //                   |
@@ -45,7 +42,6 @@ export default function NewFun() {
 
   const showFriends = async () => {
     const response = await service.get("/user/myFriends");
-    console.log(response.data);
     setFriendsArr(response.data.friends);
   };
 
@@ -65,9 +61,7 @@ export default function NewFun() {
       mainImg: imageUrl,
       isPublic: isPublic.checked,
     };
-    console.log("hola");
     try {
-      console.log(`enviando ${{ newFun, guestsArr }}`);
       await service.post("/user/newFun", { newFun, guestsArr });
       navigate("/user/myFuns");
     } catch (error) {
@@ -82,55 +76,53 @@ export default function NewFun() {
 
   return (
     <div className="CreateFunDiv">
-      <h1>Creating a new Fun</h1>
+      <h1 className="mainTitle ">Creating a new Fun</h1>
 
-      <form className="CreateFunForm" onSubmit={handleNewFun}>
-        <label htmlFor="title">Title:</label>
-        <br />
-        <input type="text" name="title" />
+      <form className="flexForm " onSubmit={handleNewFun}>
+        <div className="inputs">
+          <label htmlFor="title">Title:</label>
 
-        <br />
-
-        <label htmlFor="description">Description</label>
-        <br />
-        <textarea type="text" name="description" />
-
-        <br />
-
-        <label htmlFor="date">date:</label>
-        <br />
-        <input className="maxW" type="date" name="date" />
-
-        <br />
-
-        <label htmlFor="time">time:</label>
-        <br />
-        <input className="maxW" type="time" name="time" />
-        <br />
-        <div>
-          <hr />
-          <div>
-            <label htmlFor="image">Image: </label>
-            <input
-              type="file"
-              name="image"
-              onChange={handleFileUpload}
-              disabled={isUploading}
-            />
-            {/* below disabled prevents the user from attempting another upload while one is already happening */}
-          </div>
-
-          {/* to render a loading message or spinner while uploading the picture */}
-          {isUploading ? <h3>... uploading image</h3> : null}
-          {console.log(isUploading)}
-          {/* below line will render a preview of the image from cloudinary */}
-          {imageUrl ? (
-            <div>
-              <img src={imageUrl} alt="img" width={200} />
-            </div>
-          ) : null}
+          <input type="text" name="title" />
         </div>
-        <div className="checkbox">
+        <div className="inputs">
+          <label htmlFor="description">Description</label>
+
+          <textarea type="text" name="description" />
+        </div>
+        <div className="input">
+          <div className="inputs row">
+            <label htmlFor="date">date:</label>
+
+            <input className="maxW" type="date" name="date" />
+
+            <label htmlFor="time">hr:</label>
+
+            <input className="maxW" type="time" name="time" />
+          </div>
+        </div>
+
+        <div className="inputs">
+          <label htmlFor="image">Image: </label>
+          <input
+            className="fileInput"
+            type="file"
+            name="image"
+            onChange={handleFileUpload}
+            disabled={isUploading}
+          />
+          {/* below disabled prevents the user from attempting another upload while one is already happening */}
+        </div>
+
+        {/* to render a loading message or spinner while uploading the picture */}
+        {isUploading ? <h3>... uploading image</h3> : null}
+        {/* below line will render a preview of the image from cloudinary */}
+        {imageUrl ? (
+          <div className="inputs">
+            <img src={imageUrl} alt="img" width={200} />
+          </div>
+        ) : null}
+
+        <div className="inputs">
           <label>
             <input type="checkbox" name="isPublic" /> Make it public!
           </label>
@@ -151,11 +143,12 @@ export default function NewFun() {
           );
         })}
 
-        <hr />
-
-        <button type="submit">Create</button>
+        <button className="button" type="submit">
+          Create
+        </button>
         <p style={{ color: "red" }}>{errorMessage}</p>
       </form>
+      <hr />
     </div>
   );
 }
