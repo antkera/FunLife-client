@@ -2,7 +2,7 @@
 
 ## [See the App!](https://funlifeapp.netlify.app/)
 
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8fc1de60-6829-4cb5-80f1-4e90aa9c1c00/deploy-status)](https://app.netlify.com/sites/funlifeapp/deploys)
 
 ## Description
 
